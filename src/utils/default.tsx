@@ -1570,6 +1570,63 @@ export const defaultWeather: WeatherData = {
   cod: 200,
 };
 
+export const defaultColors: { [key: string]: string } = {
+  '200': 'purple', // thunderstorm with light rain
+  '201': 'purple', // thunderstorm with rain
+  '202': 'purple', // thunderstorm with heavy rain
+  '210': 'purple', // light thunderstorm
+  '211': 'purple', // thunderstorm
+  '212': 'purple', // heavy thunderstorm
+  '221': 'purple', // ragged thunderstorm
+  '230': 'purple', // thunderstorm with light drizzle
+  '231': 'purple', // thunderstorm with drizzle
+  '232': 'purple', // thunderstorm with heavy drizzle
+  '300': 'lightblue', // light intensity drizzle
+  '301': 'lightblue', // drizzle
+  '302': 'lightblue', // heavy intensity drizzle
+  '310': 'lightblue', // light intensity drizzle rain
+  '311': 'lightblue', // drizzle rain
+  '312': 'lightblue', // heavy intensity drizzle rain
+  '313': 'lightblue', // shower rain and drizzle
+  '314': 'lightblue', // heavy shower rain and drizzle
+  '321': 'lightblue', // shower drizzle
+  '500': 'blue', // light rain
+  '501': 'blue', // moderate rain
+  '502': 'blue', // heavy intensity rain
+  '503': 'blue', // very heavy rain
+  '504': 'blue', // extreme rain
+  '511': 'lightgray', // freezing rain
+  '520': 'lightblue', // light intensity shower rain
+  '521': 'lightblue', // shower rain
+  '522': 'lightblue', // heavy intensity shower rain
+  '531': 'lightblue', // ragged shower rain
+  '600': 'lightgray', // light snow
+  '601': 'lightgray', // snow
+  '602': 'lightgray', // heavy snow
+  '611': 'lightgray', // sleet
+  '612': 'lightgray', // light shower sleet
+  '613': 'lightgray', // shower sleet
+  '615': 'lightgray', // light rain and snow
+  '616': 'lightgray', // rain and snow
+  '620': 'lightgray', // light shower snow
+  '621': 'lightgray', // shower snow
+  '622': 'lightgray', // heavy shower snow
+  '701': 'lightgray', // mist
+  '711': 'lightgray', // smoke
+  '721': 'lightgray', // haze
+  '731': 'lightgray', // sand/dust whirls
+  '741': 'lightgray', // fog
+  '751': 'lightgray', // sand
+  '761': 'lightgray', // dust
+  '762': 'lightgray', // volcanic ash
+  '771': 'lightgray', // squalls
+  '781': 'lightgray', // tornado
+  '800': 'orange', // clear sky
+  '801': 'gray', // few clouds: 11-25%
+  '802': 'gray', // scattered clouds: 25-50%
+  '803': 'gray', // broken clouds: 51-84%
+  '804': 'gray', // overcast clouds: 85-100%
+};
 /* const defaultWeather: WeatherData = {
   coord: { lon: -35.79, lat: -6.6417 },
   weather: [{ id: 801, main: 'Clouds', description: 'algumas nuvens', icon: '02n' }],

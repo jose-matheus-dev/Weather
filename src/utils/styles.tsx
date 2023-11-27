@@ -133,6 +133,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     /* font-family: 'Montserrat', sans-serif; */
     font-family: 'Poppins', sans-serif;
+    transition: background-color 0.5s ease;
   }
 
   input, button {

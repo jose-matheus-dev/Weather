@@ -35,7 +35,7 @@ const TooltipContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  background-color: ${({ theme }) => (theme.isDarkMode ? '#3c3c3c' : '#efefef')};
+  background-color: ${({ theme }) => (theme.isDarkMode ? '#494949' : '#efefef')};
   padding: 5px;
   border-radius: 15px;
   height: 87px;

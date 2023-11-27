@@ -3,70 +3,14 @@ import { useSession } from '../hooks';
 import moment from 'moment';
 import 'moment/dist/locale/pt-br';
 import Switch from '@mui/material/Switch';
-import { captalize, celsiusToFahrenheit } from '../utils';
+import { captalize, celsiusToFahrenheit, defaultColors } from '../utils';
+import { mpsToMph } from '../utils/utils';
+import { Footer } from './Footer';
 moment.locale('pt-br');
 
 type TempProps = {
   $isFahrenheit: boolean;
   $bg: string;
-};
-
-const colors: { [key: string]: string } = {
-  '200': 'purple', // thunderstorm with light rain
-  '201': 'purple', // thunderstorm with rain
-  '202': 'purple', // thunderstorm with heavy rain
-  '210': 'purple', // light thunderstorm
-  '211': 'purple', // thunderstorm
-  '212': 'purple', // heavy thunderstorm
-  '221': 'purple', // ragged thunderstorm
-  '230': 'purple', // thunderstorm with light drizzle
-  '231': 'purple', // thunderstorm with drizzle
-  '232': 'purple', // thunderstorm with heavy drizzle
-  '300': 'lightblue', // light intensity drizzle
-  '301': 'lightblue', // drizzle
-  '302': 'lightblue', // heavy intensity drizzle
-  '310': 'lightblue', // light intensity drizzle rain
-  '311': 'lightblue', // drizzle rain
-  '312': 'lightblue', // heavy intensity drizzle rain
-  '313': 'lightblue', // shower rain and drizzle
-  '314': 'lightblue', // heavy shower rain and drizzle
-  '321': 'lightblue', // shower drizzle
-  '500': 'blue', // light rain
-  '501': 'blue', // moderate rain
-  '502': 'blue', // heavy intensity rain
-  '503': 'blue', // very heavy rain
-  '504': 'blue', // extreme rain
-  '511': 'lightgray', // freezing rain
-  '520': 'lightblue', // light intensity shower rain
-  '521': 'lightblue', // shower rain
-  '522': 'lightblue', // heavy intensity shower rain
-  '531': 'lightblue', // ragged shower rain
-  '600': 'lightgray', // light snow
-  '601': 'lightgray', // snow
-  '602': 'lightgray', // heavy snow
-  '611': 'lightgray', // sleet
-  '612': 'lightgray', // light shower sleet
-  '613': 'lightgray', // shower sleet
-  '615': 'lightgray', // light rain and snow
-  '616': 'lightgray', // rain and snow
-  '620': 'lightgray', // light shower snow
-  '621': 'lightgray', // shower snow
-  '622': 'lightgray', // heavy shower snow
-  '701': 'lightgray', // mist
-  '711': 'lightgray', // smoke
-  '721': 'lightgray', // haze
-  '731': 'lightgray', // sand/dust whirls
-  '741': 'lightgray', // fog
-  '751': 'lightgray', // sand
-  '761': 'lightgray', // dust
-  '762': 'lightgray', // volcanic ash
-  '771': 'lightgray', // squalls
-  '781': 'lightgray', // tornado
-  '800': 'orange', // clear sky
-  '801': 'gray', // few clouds: 11-25%
-  '802': 'gray', // scattered clouds: 25-50%
-  '803': 'gray', // broken clouds: 51-84%
-  '804': 'gray', // overcast clouds: 85-100%
 };
 
 const StyledSwitch = () => {
@@ -99,7 +43,7 @@ export function Weather() {
     <WeatherDiv>
       <Wrapper>
         <div>
-          <Temp $bg={colors[weather.weather[0].id]} $isFahrenheit={info.isFahrenheit}>
+          <Temp $bg={defaultColors[weather.weather[0].id]} $isFahrenheit={info.isFahrenheit}>
             <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="weather icon" />
             {weather && Math.round(info.isFahrenheit ? celsiusToFahrenheit(weather.main.temp) : weather?.main.temp)}
           </Temp>
@@ -219,5 +163,95 @@ const WeatherDiv = styled.div`
     font-style: normal;
     font-weight: 400;
     line-height: 48px; /* 200% */
+  }
+`;
+
+export function WeatherDetails() {
+  const { weather, info } = useSession();
+
+  return (
+    <WeatherDetailsDiv>
+      <div>
+        <div>
+          <p>Mínima</p>
+          <h3>
+            {Math.round(info.isFahrenheit ? celsiusToFahrenheit(weather.main.temp_min) : weather.main.temp_min)}º
+            {info.isFahrenheit ? 'F' : 'C'}
+          </h3>
+        </div>
+        <div>
+          <p>Máxima</p>
+          <h3>
+            {Math.round(info.isFahrenheit ? celsiusToFahrenheit(weather.main.temp_max) : weather.main.temp_max)}º
+            {info.isFahrenheit ? 'F' : 'C'}
+          </h3>
+        </div>
+      </div>
+      <div>
+        <div>
+          <p>Umidade</p>
+          <h3>{weather.main.humidity}%</h3>
+        </div>
+        <div>
+          <p>Velocidade do vento</p>
+          <h3>{info.isFahrenheit ? `${mpsToMph(weather.wind.speed).toFixed(2)} mph` : `${weather.wind.speed} m/s`}</h3>
+        </div>
+      </div>
+      <h4>
+        {weather.main.temp < 17 || weather.main.temp_min < 17 || weather.main.temp_max < 17
+          ? 'Sim, você deve levar um casaquinho!'
+          : 'Não, você não deve levar um casaquinho!'}
+      </h4>
+      <Footer />
+    </WeatherDetailsDiv>
+  );
+}
+
+const WeatherDetailsDiv = styled.main`
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-top: 50px;
+  > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 100px;
+  }
+  > div > div {
+    display: flex;
+    gap: 13px;
+    justify-content: center;
+    flex-direction: column;
+    padding-left: 45px;
+    border-radius: 32px;
+    background: linear-gradient(117deg, #4d4494 22.83%, #4f43ae 90.03%);
+    box-shadow: 0px 24px 48px 0px rgba(49, 79, 124, 0.08);
+    width: 500px;
+    height: 180px;
+    flex-shrink: 0;
+
+    p {
+      color: #fff;
+      font-size: 22px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px; /* 109.091% */
+    }
+    h3 {
+      color: #fff;
+      font-size: 48px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 36px; /* 75% */
+    }
+    h4 {
+      margin-top: 66px;
+      color: #afadad;
+      font-size: 24px;
+      font-style: italic;
+      font-weight: 400;
+      line-height: 48px; /* 200% */
+    }
   }
 `;
