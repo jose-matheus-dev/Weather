@@ -8,20 +8,26 @@ export function TodayPage() {
 
   return (
     <TodayContainer>
+      <div>
+        <Header />
+      </div>
       <SideBar />
-      <Header />
     </TodayContainer>
   );
 }
 
 const TodayContainer = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
   display: flex;
   flex-direction: row-reverse;
-  background-color: #efefef;
+  justify-content: start;
   width: 1912px;
   height: max-content;
-  /* height: 1772px; */
-  border: 4px solid #d8d8d8;
+  background-color: ${({ theme }) => (theme.isDarkMode ? '#3c3c3c' : '#efefef')};
+  border: 4px solid ${({ theme }) => (theme.isDarkMode ? '#272727' : '#d8d8d8')};
 
   /* 
   width: 1912px;

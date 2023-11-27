@@ -1,44 +1,42 @@
 import { createContext, useState } from 'react';
 import { WeatherData } from './protocols';
 import { defaultWeather } from './default';
+import { ThemeProvider } from 'styled-components';
 
 export interface WeatherContextType extends WeatherData {
   setWeather: React.Dispatch<React.SetStateAction<WeatherData>>;
 }
 
-/* const defaultWeather: WeatherData = {
-  coord: { lon: -35.79, lat: -6.6417 },
-  weather: [{ id: 801, main: 'Clouds', description: 'algumas nuvens', icon: '02n' }],
-  base: 'stations',
-  main: {
-    temp: 19.96,
-    feels_like: 20.15,
-    temp_min: 19.96,
-    temp_max: 19.96,
-    pressure: 1013,
-    humidity: 82,
-    sea_level: 1013,
-    grnd_level: 952,
-  },
-  visibility: 10000,
-  wind: { speed: 5.48, deg: 138, gust: 10.67 },
-  clouds: { all: 14 },
-  dt: 1700970605,
-  sys: { country: 'BR', sunrise: 1700985407, sunset: 1701030260 },
-  timezone: -10800,
-  id: 3404306,
-  name: 'Cacimba de Dentro',
-  cod: 200,
-}; */
-
-
-interface WeatherProviderProps {
+interface ProviderProps {
   children: React.ReactNode;
 }
 
-export const WeatherContext = createContext<WeatherContextType | undefined>(undefined);
+interface InfoContextType {
+  isDarkMode: boolean;
+  isFahrenheit: boolean;
+  setIsFahrenheit: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsDarkMode: React.Dispatch<React.SetStateAction<boolean>>;
+}
 
-export function WeatherProvider({ children }: WeatherProviderProps) {
+export const WeatherContext = createContext<WeatherContextType | null>(null);
+export const InfoContext = createContext<InfoContextType | null>(null);
+
+export function WeatherProvider({ children }: { children: React.ReactNode }) {
   const [weather, setWeather] = useState<WeatherData>(defaultWeather);
-  return <WeatherContext.Provider value={{ ...weather, setWeather }}>{children}</WeatherContext.Provider>;
+  return (
+    <WeatherContext.Provider value={{ ...weather, setWeather }}>
+      <InfoProvider>{children}</InfoProvider>
+    </WeatherContext.Provider>
+  );
+}
+
+export function InfoProvider({ children }: ProviderProps) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isFahrenheit, setIsFahrenheit] = useState(false);
+
+  return (
+    <InfoContext.Provider value={{ isDarkMode, isFahrenheit, setIsDarkMode, setIsFahrenheit }}>
+      <ThemeProvider theme={{ isDarkMode }}>{children}</ThemeProvider>
+    </InfoContext.Provider>
+  );
 }

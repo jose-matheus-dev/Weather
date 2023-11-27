@@ -12,7 +12,7 @@ interface Weather {
 
 interface Main {
   temp: number;
-  feels_like: number;
+  feels_like?: number;
   temp_min: number;
   temp_max: number;
   temp_kf?: number;
@@ -29,7 +29,7 @@ interface Wind {
 }
 
 interface Rain {
-  '1h': number;
+  '1h'?: number;
   '3h'?: number;
 }
 interface Snow {
@@ -44,9 +44,10 @@ interface Clouds {
 interface Sys {
   type?: number;
   id?: number;
-  country: string;
-  sunrise: number;
-  sunset: number;
+  pod?: string;
+  country?: string;
+  sunrise?: number;
+  sunset?: number;
 }
 
 interface City {
@@ -57,7 +58,7 @@ interface City {
   population?: number;
   sunrise?: number;
   sunset?: number;
-  timezone: number;
+  timezone?: number;
 }
 
 interface ForecastItem {
@@ -66,8 +67,8 @@ interface ForecastItem {
   weather: Weather[];
   clouds: Clouds;
   wind: Wind;
-  visibility: number;
-  pop: 0;
+  visibility?: number;
+  pop?: number;
   sys: Sys;
   dt_txt: string;
   rain?: Rain;

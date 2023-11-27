@@ -124,6 +124,9 @@ export const GlobalStyle = createGlobalStyle`
     min-height: 100dvh;
     background-color: #e1e1e1;
   }
+  h1, h2, h4, p, label {
+    color: ${({ theme }) => (theme.isDarkMode ? '#ececec !important' : 'inherit')};
+  }
   * {
     margin: 0;
     padding: 0;

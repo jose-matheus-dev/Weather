@@ -1,4 +1,4 @@
-import { ForecastData } from "./protocols";
+import { ForecastData, WeatherData } from "./protocols";
 
 export const defaulForecast: ForecastData = {
   cod: '200',
@@ -1569,3 +1569,28 @@ export const defaultWeather: WeatherData = {
   name: 'Honolulu',
   cod: 200,
 };
+
+/* const defaultWeather: WeatherData = {
+  coord: { lon: -35.79, lat: -6.6417 },
+  weather: [{ id: 801, main: 'Clouds', description: 'algumas nuvens', icon: '02n' }],
+  base: 'stations',
+  main: {
+    temp: 19.96,
+    feels_like: 20.15,
+    temp_min: 19.96,
+    temp_max: 19.96,
+    pressure: 1013,
+    humidity: 82,
+    sea_level: 1013,
+    grnd_level: 952,
+  },
+  visibility: 10000,
+  wind: { speed: 5.48, deg: 138, gust: 10.67 },
+  clouds: { all: 14 },
+  dt: 1700970605,
+  sys: { country: 'BR', sunrise: 1700985407, sunset: 1701030260 },
+  timezone: -10800,
+  id: 3404306,
+  name: 'Cacimba de Dentro',
+  cod: 200,
+}; */

@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { SideBar } from '../components/SideBar';
 import { Header } from '../components/Header';
 import { Forecast } from '../components/Forecast';
-import { Footer } from '../components/Footer';
 
 export function UpcomingDaysPage() {
   return (
@@ -23,11 +22,9 @@ const UpcomingDaysContainer = styled.div`
 
   display: flex;
   flex-direction: row-reverse;
-  justify-content: space-between;
-
-  background-color: #efefef;
-  /* background-color: skyblue; */
+  justify-content: start;
   width: 1912px;
   height: max-content;
-  border: 4px solid #d8d8d8;
+  background-color: ${({ theme }) => (theme.isDarkMode ? '#3c3c3c' : '#efefef')};
+  border: 4px solid ${({ theme }) => (theme.isDarkMode ? '#272727' : '#d8d8d8')};
 `;

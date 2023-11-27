@@ -7,7 +7,9 @@ import { useSession } from '../hooks';
 import { useState } from 'react';
 
 function Search() {
-  const { setWeather } = useSession();
+  const {
+    weather: { setWeather },
+  } = useSession();
   const [value, setValue] = useState('');
 
   const press = (e: React.FormEvent) => {
@@ -74,7 +76,9 @@ const SearchForm = styled.form`
     height: 80px;
     border-radius: 24px;
     box-shadow: 0px 24px 48px 0px #314f7c14;
-    background-color: #ededef;
+    background-color: ${({ theme }) => (theme.isDarkMode ? '#424242' : '#ededef')};
+    color: ${({ theme }) => (theme.isDarkMode ? '#ededef' : '#424242')};
+
     padding-left: 67px;
     font-size: 22px;
     letter-spacing: 0em;
@@ -84,7 +88,7 @@ const SearchForm = styled.form`
       font-family: 'Montserrat', sans-serif;
       font-size: 22px;
       letter-spacing: 0em;
-      color: #424243;
+      color: ${({ theme }) => (theme.isDarkMode ? '#ededef' : '#424242')};
     }
   }
 `;
@@ -102,9 +106,10 @@ const StyledBiSearchAlt2 = styled(BiSearchAlt2)`
   margin-left: 18.35px;
 `;
 
-const SideBarContainer = styled.div`
-  background-color: #ffffff;
+const SideBarContainer = styled.aside`
+  background-color: ${({ theme }) => (theme.isDarkMode ? '#000000' : '#ffffff')};
   padding-top: 46px;
+  margin-right: 50px;
   width: 662px;
   height: 100%;
 `;

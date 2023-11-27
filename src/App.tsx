@@ -1,10 +1,11 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { TodayPage, UpcomingDaysPage } from './pages';
-import { WeatherProvider } from './utils/context';
+import { GlobalStyle, WeatherProvider } from './utils';
 
 function App() {
   return (
     <WeatherProvider>
+      <GlobalStyle />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/weather" replace />} />
