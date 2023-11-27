@@ -245,13 +245,12 @@ const WeatherDetailsDiv = styled.main`
       font-weight: 600;
       line-height: 36px; /* 75% */
     }
-    h4 {
-      margin-top: 66px;
-      color: #afadad;
-      font-size: 24px;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 48px; /* 200% */
-    }
+  }
+  h4 {
+    color: #afadad;
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 48px; /* 200% */
   }
 `;

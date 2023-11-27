@@ -88,7 +88,8 @@ export interface WeatherData {
   timezone: number;
   id: number;
   name: string;
-  cod: number;
+  cod: string | number;
+  message?: string;
   rain?: Rain;
   snow?: Snow;
 }

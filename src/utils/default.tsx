@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { ForecastData, WeatherData } from "./protocols";
 
 export const defaulForecast: ForecastData = {
@@ -1651,3 +1652,10 @@ export const defaultColors: { [key: string]: string } = {
   name: 'Cacimba de Dentro',
   cod: 200,
 }; */
+
+export const weatherError = (text: string = 'weather error') => Swal.fire({
+  title: 'Erro!',
+  text,
+  icon: 'error',
+  confirmButtonText: 'Ok',
+});

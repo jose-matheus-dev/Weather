@@ -5,6 +5,8 @@ import { Weather } from './Weather';
 import { openWeather } from '../utils/server';
 import { useSession } from '../hooks';
 import { useState } from 'react';
+import Swal from 'sweetalert2';
+import { WeatherData, weatherError } from '../utils';
 
 function Search() {
   const {
@@ -18,16 +20,22 @@ function Search() {
       .getCurrentWeatherByCityName({
         cityName: value,
       })
-      .then((weather) => {
-        setWeather(weather);
-        console.log(weather);
+      .then((weather: WeatherData) => {
+        if ([401, 404, 429, 500, 502, 503, 504].includes(Number(weather.cod))) weatherError(weather.message);
+        else setWeather(weather);
       })
-      .catch((err) => console.error(err));
+      .catch((err: Error) => weatherError(err.message || 'Houve um problema ao se conectar à API weather.'));
   };
   return (
     <SearchForm onSubmit={press}>
       <StyledBiSearchAlt2 />
-      <input type="text" placeholder="Procure por uma cidade" onChange={(e) => setValue(e.target.value)} autoFocus />
+      <input
+        type="text"
+        placeholder="Procure por uma cidade"
+        onChange={(e) => setValue(e.target.value)}
+        autoFocus
+        required
+      />
     </SearchForm>
   );
 }

@@ -6,7 +6,8 @@ import moment from 'moment';
 import { Footer } from './Footer';
 import { useSession } from '../hooks';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
-import { ForecastData, celsiusToFahrenheit, defaulForecast } from '../utils';
+import { ForecastData, celsiusToFahrenheit, defaulForecast, weatherError } from '../utils';
+import Swal from 'sweetalert2';
 
 type WeatherChartProps = {
   data: Array<ForecastData['list'][0] & { dtFormatted: string }>;
@@ -76,12 +77,10 @@ export function Forecast() {
       openWeather
         .getThreeHourForecastByCityId(weather.id)
         .then((forecast) => {
-          console.log(forecast, 'forecast');
-          setForecast(forecast);
+          if ([401, 404, 429, 500, 502, 503, 504].includes(Number(weather.cod))) weatherError(weather.message);
+          else setForecast(forecast);
         })
-        .catch((err) => {
-          console.error(err);
-        });
+        .catch((err: Error) => weatherError(err.message || 'Houve um problema ao se conectar à API weather forecast.'));
     }
   }, [weather]);
 

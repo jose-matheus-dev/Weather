@@ -19,7 +19,7 @@ export function Header() {
       <Location>
         <h1>{weather.name}</h1>
         <p>
-          Lat: <span>{weather.coord.lat.toFixed(2)}</span> Long: <span>{weather.coord.lon.toFixed(2)}</span>
+          Lat: <span>{weather?.coord.lat.toFixed(2)}</span> Long: <span>{weather?.coord.lon.toFixed(2)}</span>
         </p>
       </Location>
     </HeaderContainer>
