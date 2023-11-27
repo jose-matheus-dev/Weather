@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { SideBar } from '../components/SideBar';
-import { useEffect } from 'react';
 import { useSession } from '../hooks';
+import { Header } from '../components/Header';
 
 export function TodayPage() {
   const { weather } = useSession();
@@ -9,14 +9,17 @@ export function TodayPage() {
   return (
     <TodayContainer>
       <SideBar />
-
+      <Header />
     </TodayContainer>
   );
 }
 
 const TodayContainer = styled.div`
+  display: flex;
+  flex-direction: row-reverse;
   background-color: #efefef;
   width: 1912px;
+  height: max-content;
   /* height: 1772px; */
   border: 4px solid #d8d8d8;
 

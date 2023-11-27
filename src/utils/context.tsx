@@ -1,5 +1,6 @@
 import { createContext, useState } from 'react';
 import { WeatherData } from './protocols';
+import { defaultWeather } from './default';
 
 export interface WeatherContextType extends WeatherData {
   setWeather: React.Dispatch<React.SetStateAction<WeatherData>>;
@@ -30,21 +31,6 @@ export interface WeatherContextType extends WeatherData {
   cod: 200,
 }; */
 
-const defaultWeather = {
-  coord: { lon: -157.8583, lat: 21.3069 },
-  weather: [{ id: 802, main: 'Clouds', description: 'nuvens dispersas', icon: '03n' }],
-  base: 'stations',
-  main: { temp: 31, feels_like: 25.34, temp_min: 23.26, temp_max: 26.9, pressure: 1014, humidity: 77 },
-  visibility: 10000,
-  wind: { speed: 3.09, deg: 60 },
-  clouds: { all: 40 },
-  dt: 1700971944,
-  sys: { type: 2, id: 2010198, country: 'US', sunrise: 1700930928, sunset: 1700970507 },
-  timezone: -36000,
-  id: 5856195,
-  name: 'Honolulu',
-  cod: 200,
-};
 
 interface WeatherProviderProps {
   children: React.ReactNode;

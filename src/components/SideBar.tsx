@@ -18,8 +18,9 @@ function Search() {
       })
       .then((weather) => {
         setWeather(weather);
+        console.log(weather);
       })
-      .catch((err) => console.error(err)); 
+      .catch((err) => console.error(err));
   };
   return (
     <SearchForm onSubmit={press}>
