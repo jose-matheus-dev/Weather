@@ -23,8 +23,9 @@ const UpcomingDaysContainer = styled.div`
   display: flex;
   flex-direction: row-reverse;
   justify-content: start;
-  width: 1912px;
-  height: max-content;
+  /* width: 1912px; */
+  min-height: max-content;
+  height: 100svh;
   background-color: ${({ theme }) => (theme.isDarkMode ? '#494949' : '#efefef')};
   border: 4px solid ${({ theme }) => (theme.isDarkMode ? '#272727' : '#d8d8d8')};
 `;

@@ -4,15 +4,43 @@ import casaco from '/casaco.svg';
 import { Weather } from './Weather';
 import { openWeather } from '../utils/server';
 import { useSession } from '../hooks';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { WeatherData, weatherError } from '../utils';
+type LocationState = {
+  latitude: number;
+  longitude: number;
+};
 
 function Search() {
   const {
     weather: { setWeather },
   } = useSession();
   const [value, setValue] = useState('');
+  const [location, setLocation] = useState<LocationState | null>(null);
 
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
+        setLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+      });
+    } else {
+      weatherError('Geolocation is not supported by this browser.');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (location)
+      openWeather
+        .getCurrentWeatherByGeoCoordinates(location.latitude, location.longitude)
+        .then((weather: WeatherData) => {
+          if ([401, 404, 429, 500, 502, 503, 504].includes(Number(weather.cod))) weatherError(weather.message);
+          else setWeather(weather);
+        })
+        .catch((err: Error) => weatherError(err.message || 'Houve um problema ao se conectar à API weather.'));
+  }, [location]);
   const press = (e: React.FormEvent) => {
     e.preventDefault();
     openWeather
@@ -115,13 +143,18 @@ const StyledBiSearchAlt2 = styled(BiSearchAlt2)`
 `;
 
 const SideBarContainer = styled.aside`
+  position: relative;
   background-color: ${({ theme }) => (theme.isDarkMode ? '#000000' : '#ffffff')};
-  padding-top: 46px;
+  padding-top: 40px;
   margin-right: 50px;
   width: 662px;
-  height: 100%;
+  min-height: max-content;
   > h4 {
+    width: max-content;
     position: absolute;
+    left: -20px;
+    right: 0px;
+    margin: auto;
     bottom: 23px;
     color: #222;
     font-size: 24px;

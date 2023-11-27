@@ -36,7 +36,6 @@ const NavBar = styled.nav`
 
 const Location = styled.div<{ children: { props: { children: string } }[] }>`
   width: 100%;
-  padding-top: 37px;
 
   h1 {
     margin-left: -9px;

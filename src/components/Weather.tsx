@@ -157,7 +157,6 @@ const WeatherDiv = styled.div`
 
 export function WeatherDetails() {
   const { weather, info } = useSession();
-
   return (
     <WeatherDetailsDiv>
       <div>
@@ -216,7 +215,7 @@ const WeatherDetailsDiv = styled.main`
     border-radius: 32px;
     background: linear-gradient(117deg, #4d4494 22.83%, #4f43ae 90.03%);
     box-shadow: 0px 24px 48px 0px rgba(49, 79, 124, 0.08);
-    width: 500px;
+    width: 50%;
     height: 180px;
     flex-shrink: 0;
 
@@ -235,7 +234,8 @@ const WeatherDetailsDiv = styled.main`
       line-height: 36px; /* 75% */
     }
   }
-  h4 {
+  > h4 {
+    margin-top: -20px;
     color: #afadad;
     font-size: 24px;
     font-style: italic;

@@ -24,9 +24,7 @@ const TodayContainer = styled.div`
   flex-direction: row-reverse;
   justify-content: start;
   /* width: 1912px; */
-  min-height: max-content;
-  height: 100svh;
+  min-height: 100svh;
   background-color: ${({ theme }) => (theme.isDarkMode ? '#494949' : '#efefef')};
   border: 4px solid ${({ theme }) => (theme.isDarkMode ? '#272727' : '#d8d8d8')};
-  background-color: red;
   `;
