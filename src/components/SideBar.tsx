@@ -5,7 +5,6 @@ import { Weather } from './Weather';
 import { openWeather } from '../utils/server';
 import { useSession } from '../hooks';
 import { useState } from 'react';
-import Swal from 'sweetalert2';
 import { WeatherData, weatherError } from '../utils';
 
 function Search() {
@@ -49,6 +48,7 @@ export function SideBar() {
       </Title>
       <Search />
       <Weather />
+      <h4>Todos os direitos reservados. 2023.</h4>
     </SideBarContainer>
   );
 }
@@ -120,4 +120,13 @@ const SideBarContainer = styled.aside`
   margin-right: 50px;
   width: 662px;
   height: 100%;
+  > h4 {
+    position: absolute;
+    bottom: 23px;
+    color: #222;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 48px; /* 200% */
+  }
 `;

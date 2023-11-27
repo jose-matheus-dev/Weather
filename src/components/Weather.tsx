@@ -55,7 +55,6 @@ export function Weather() {
         <p>{captalize(moment.utc(weather?.dt, 'X').add(weather?.timezone, 'seconds').format('dddd, HH:mm'))}</p>
       </LocalTime>
       <StyledSwitch />
-      <p>Todos os direitos reservados. 2023.</p>
     </WeatherDiv>
   );
 }
@@ -154,16 +153,6 @@ const WeatherDiv = styled.div`
   text-align: center;
   justify-content: center;
   flex-direction: column;
-
-  > p {
-    margin-top: 83px;
-    margin-bottom: 23px;
-    color: #222;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 48px; /* 200% */
-  }
 `;
 
 export function WeatherDetails() {
