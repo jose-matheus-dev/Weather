@@ -6,11 +6,10 @@ import { Search } from '../components/SideBar';
 
 export function Weather({ details }: { details: React.ReactNode }) {
   const { weather } = useSession();
-  console.log(weather);
 
   return (
     <Container>
-      {Object.keys(weather).length > 1 ? (
+      {(weather?.weather) ? (
         <>
           <Main content={details} />
           <Footer />

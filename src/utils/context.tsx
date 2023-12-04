@@ -1,12 +1,11 @@
 import { createContext, useEffect, useState } from 'react';
 import { WeatherData } from './protocols';
-import { defaultWeather } from './default';
 import { ThemeProvider } from 'styled-components';
 import useGeolocation from '../hooks/useGeoLocation';
 
-export interface WeatherContextType extends WeatherData {
-  setWeather: React.Dispatch<React.SetStateAction<WeatherData>>;
-}
+export type WeatherContextType = WeatherData | null & {
+  setWeather?: React.Dispatch<React.SetStateAction<WeatherData | undefined>>;
+};
 
 interface ProviderProps {
   children: React.ReactNode;
@@ -24,7 +23,7 @@ export const InfoContext = createContext<InfoContextType | null>(null);
 
 export function WeatherProvider({ children }: { children: React.ReactNode }) {
   const location = useGeolocation();
-  const [weather, setWeather] = useState<WeatherData | null>(null);
+  const [weather, setWeather] = useState<WeatherData | undefined>(undefined);
 
   useEffect(() => {
     if (location) console.log(location);

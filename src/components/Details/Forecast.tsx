@@ -73,7 +73,7 @@ export function ForecastDetails() {
   const [forecast, setForecast] = useState(defaulForecast);
 
   useEffect(() => {
-    if (Object.keys(weather).length !== 0 && weather.name !== 'Honolulu') {
+    if (Object.keys(weather).length !== 0) {
       openWeather
         .getThreeHourForecastByCityId(weather.id)
         .then((forecast) => {

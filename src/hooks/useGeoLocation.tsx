@@ -9,6 +9,7 @@ const useGeolocation = (): Location | null => {
   const [location, setLocation] = useState<Location | null>(null);
 
   useEffect(() => {
+    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
         setLocation({

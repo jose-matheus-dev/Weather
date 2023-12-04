@@ -10,9 +10,9 @@ export function Header() {
     <HeaderContainer>
       <NavBar />
       <Coords>
-        <h1>{weather.name}</h1>
+        <h1>{weather?.name}</h1>
         <p>
-          Lat: <span>{weather?.coord.lat.toFixed(2)}</span> Long: <span>{weather?.coord.lon.toFixed(2)}</span>
+          Lat: <span>{weather?.coord?.lat.toFixed(2)}</span> Long: <span>{weather?.coord?.lon.toFixed(2)}</span>
         </p>
       </Coords>
     </HeaderContainer>
@@ -34,12 +34,12 @@ const Coords = styled.div<{ children: { props: { children: string } }[] }>`
     justify-content: center;
     flex-shrink: 0;
     color: #222222;
-    font-size: clamp(60px, 8vw, 150px);
+    font-size: clamp(60px, 6vw, 150px);
     font-style: normal;
     font-weight: 400;
     line-height: 0.7em;
   }
-  p {   
+  p {
     padding-left: 1px;
     margin-top: min(1.11vh, 12px);
   }
@@ -58,4 +58,3 @@ const Coords = styled.div<{ children: { props: { children: string } }[] }>`
     }
   }
 `;
-

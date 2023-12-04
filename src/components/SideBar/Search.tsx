@@ -12,7 +12,7 @@ type LocationState = {
 };
 
 export function Search() {
-  const { weather: { setWeather } } = useSession();
+  const { setWeather } = useSession();
   const [value, setValue] = useState('');
   const [location, setLocation] = useState<LocationState | null>(null);
 
@@ -29,18 +29,24 @@ export function Search() {
     }
   }, []);
 
+
   useEffect(() => {
     if (location)
       openWeather
         .getCurrentWeatherByGeoCoordinates(location.latitude, location.longitude)
         .then((weather: WeatherData) => {
-          if ([401, 404, 429, 500, 502, 503, 504].includes(Number(weather.cod))) weatherError(weather.message);
+          if ([401, 404, 429, 500, 502, 503, 504].includes(Number(weather.cod)))
+            weatherError(defaultErrors[weather.cod]);
           else setWeather(weather);
         })
         .catch((err: Error) => weatherError(err.message || 'Houve um problema ao se conectar à API weather.'));
   }, [location]);
+
+
   const press = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('ue');
+    
     openWeather
       .getCurrentWeatherByCityName({
         cityName: value,
@@ -51,6 +57,7 @@ export function Search() {
       })
       .catch((err: Error) => weatherError(err.message || 'Houve um problema ao se conectar à API weather.'));
   };
+
   return (
     <SearchForm onSubmit={press}>
       <StyledBiSearchAlt2 />
@@ -89,7 +96,6 @@ const SearchForm = styled.form`
   }
   @media (min-width: 768px) {
     margin: auto;
-  
   }
   @media (max-width: 576px) {
     width: 100%;

@@ -1599,4 +1599,4 @@ export const weatherError = (text: string = 'weather error') =>
     confirmButtonText: 'Ok',
     background: '#333',
     color: '#fff',
-  });
+});

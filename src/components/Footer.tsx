@@ -43,6 +43,7 @@ const DivMain = styled.div`
   span {
     color: #96a7f2;
   }
+  z-index: 1;
 
   @media (max-width: 1200px) {
     background-color: ${({ theme }) => (theme.isDarkMode ? '#494949' : '#efefef')};
