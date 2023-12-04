@@ -6,7 +6,7 @@
   This is a front-end application that utilizes the OpenWeatherMap API to fetch weather information for any city in the world. It also features a Recharts graph for visual representation of the data.
   <hr>
 
-Deployed on Vercel: [weather-front-444c43.vercel.app](weather-front-444c43.vercel.app)
+Deployed on Vercel: [weather-front-444c43.vercel.app](https://weather-front-444c43.vercel.app)
 
   <hr/>
 
@@ -16,7 +16,7 @@ Deployed on Vercel: [weather-front-444c43.vercel.app](weather-front-444c43.verce
 npm i
 ```
 
-#### Register on the website [https://openweathermap.org/](https://openweathermap.org/)
+#### Register on the website [openweathermap.org/](https://openweathermap.org/)
 
 #### Find your key in your registered email.
 
@@ -36,7 +36,7 @@ Aplicação Front que consume a OpenWeatherMap e para obter informações sobre 
 
 <hr>
 
-Deploy on Vercel: [weather-front-444c43.vercel.app](weather-front-444c43.vercel.app)
+Deploy on Vercel: [weather-front-444c43.vercel.app](https://weather-front-444c43.vercel.app)
 
 <hr>
 
@@ -46,7 +46,7 @@ Deploy on Vercel: [weather-front-444c43.vercel.app](weather-front-444c43.vercel.
 npm i
 ```
 
-#### Cadastre-se no site [https://openweathermap.org/](https://openweathermap.org/)
+#### Cadastre-se no site [openweathermap.org/](https://openweathermap.org/)
 
 #### Encontre sua key em seu email cadastrado.
 
