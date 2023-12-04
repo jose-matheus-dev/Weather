@@ -6,7 +6,6 @@ import moment from 'moment';
 import { useSession } from '../../hooks';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 import { ForecastData, celsiusToFahrenheit, defaulForecast, weatherError } from '../../utils';
-import { details } from '../../styles/Responsive/Details';
 
 type WeatherChartProps = {
   data: Array<ForecastData['list'][0] & { dtFormatted: string }>;

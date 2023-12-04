@@ -3,7 +3,7 @@ import { BiSearchAlt2 } from 'react-icons/bi';
 import { openWeather } from '../../utils/server';
 import { useSession } from '../../hooks';
 import { useEffect, useState } from 'react';
-import { WeatherData, weatherError } from '../../utils';
+import { WeatherData, defaultErrors, weatherError } from '../../utils';
 import { aside } from '../../styles/Responsive/SideBar';
 
 type LocationState = {
@@ -46,7 +46,7 @@ export function Search() {
         cityName: value,
       })
       .then((weather: WeatherData) => {
-        if ([401, 404, 429, 500, 502, 503, 504].includes(Number(weather.cod))) weatherError(weather.message);
+        if ([401, 404, 429, 500, 502, 503, 504].includes(Number(weather.cod))) weatherError(defaultErrors[weather.cod]);
         else setWeather(weather);
       })
       .catch((err: Error) => weatherError(err.message || 'Houve um problema ao se conectar à API weather.'));

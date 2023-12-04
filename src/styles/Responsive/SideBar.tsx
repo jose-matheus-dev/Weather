@@ -8,6 +8,7 @@ const Header = css`
 
 const Search = css`
   width: 80%;
+  max-width: 400px;
   height: 7.41vh;
 `;
 

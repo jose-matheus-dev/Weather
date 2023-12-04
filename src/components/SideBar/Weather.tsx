@@ -42,7 +42,7 @@ export function Weather() {
     <WeatherDiv>
       <Wrapper>
         <div>
-          <Temp $bg={defaultColors[weather.weather[0].id]} $isFahrenheit={info.isFahrenheit}>
+          <Temp $bg={defaultColors[weather.weather[0].main]} $isFahrenheit={info.isFahrenheit}>
             <img src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`} alt="weather icon" />
             {weather && Math.round(info.isFahrenheit ? celsiusToFahrenheit(weather.main.temp) : weather?.main.temp)}
           </Temp>

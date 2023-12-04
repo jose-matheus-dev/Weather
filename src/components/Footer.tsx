@@ -59,8 +59,7 @@ const DivAside = styled.div`
 
 `;
 const Container = styled.footer`
-  /* bottom: calc(0px - min(3.7vh, 40px)); */
-  margin-top: calc(-20px - min(4vh, 40px));
+  margin-top: calc(-18px - min(4vh, 40px));
   z-index: 100;
   width: 100%;
   height: max-content;

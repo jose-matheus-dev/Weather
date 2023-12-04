@@ -25,7 +25,5 @@ export const useSession = () => {
     throw new Error('O contexto de informações é necessário, mas não está definido!');
   }
 
-  console.log(weather);
-
   return { weather, info };
 };
