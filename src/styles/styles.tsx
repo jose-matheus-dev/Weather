@@ -146,10 +146,6 @@ export const GlobalStyle = createGlobalStyle`
     
   }
 
-  @media (max-width: 600px) {
-      width: 100%
-  }
-
 `;
 
 export const Form = styled.form`

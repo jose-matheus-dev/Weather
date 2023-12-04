@@ -1557,7 +1557,7 @@ export const defaulForecast: ForecastData = {
 
 export const defaultWeather: WeatherData = {
   coord: { lon: -157.8583, lat: 21.3069 },
-  weather: [{ id: 802, main: 'Clouds', description: 'nuvens dispersas', icon: '03n' }],
+  weather: [{ id: 200, main: 'Clouds', description: 'nuvens dispersas', icon: '04d' }],
   base: 'stations',
   main: { temp: 25, feels_like: 25.34, temp_min: 23.26, temp_max: 26.9, pressure: 1014, humidity: 77 },
   visibility: 10000,

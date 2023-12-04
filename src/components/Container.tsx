@@ -1,21 +1,16 @@
 import styled from 'styled-components';
-import { SideBar } from '../components/SideBar';
-import { Header } from '../components/Header';
-import { WeatherDetails } from '../components/Weather';
+import { Footer } from './Footer';
 
-export function TodayPage() {
+export function Container({ children }: { children: React.ReactNode }) {
   return (
-    <TodayContainer>
-      <div>
-        <Header />
-        <WeatherDetails />
-      </div>
-      <SideBar />
-    </TodayContainer>
+    <Div>
+      {children}
+      <Footer />
+    </Div>
   );
 }
 
-const TodayContainer = styled.div`
+const Div = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
@@ -23,8 +18,12 @@ const TodayContainer = styled.div`
   display: flex;
   flex-direction: row-reverse;
   justify-content: start;
-  /* width: 1912px; */
   min-height: 100svh;
   background-color: ${({ theme }) => (theme.isDarkMode ? '#494949' : '#efefef')};
   border: 4px solid ${({ theme }) => (theme.isDarkMode ? '#272727' : '#d8d8d8')};
-  `;
+
+  @media (max-width: 576px) {
+    width: 100%;
+    flex-direction: column-reverse;
+  }
+`;
