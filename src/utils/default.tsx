@@ -1,5 +1,5 @@
-import Swal from "sweetalert2";
-import { ForecastData, WeatherData } from "./protocols";
+import Swal from 'sweetalert2';
+import { ForecastData, WeatherData } from './protocols';
 
 export const defaulForecast: ForecastData = {
   cod: '200',
@@ -1557,7 +1557,7 @@ export const defaulForecast: ForecastData = {
 
 export const defaultWeather: WeatherData = {
   coord: { lon: -157.8583, lat: 21.3069 },
-  weather: [{ id: 802, main: 'Clouds', description: 'nuvens dispersas', icon: '03n' }],
+  weather: [{ id: 200, main: 'Clouds', description: 'nuvens dispersas', icon: '04d' }],
   base: 'stations',
   main: { temp: 25, feels_like: 25.34, temp_min: 23.26, temp_max: 26.9, pressure: 1014, humidity: 77 },
   visibility: 10000,
@@ -1572,90 +1572,31 @@ export const defaultWeather: WeatherData = {
 };
 
 export const defaultColors: { [key: string]: string } = {
-  '200': 'purple', // thunderstorm with light rain
-  '201': 'purple', // thunderstorm with rain
-  '202': 'purple', // thunderstorm with heavy rain
-  '210': 'purple', // light thunderstorm
-  '211': 'purple', // thunderstorm
-  '212': 'purple', // heavy thunderstorm
-  '221': 'purple', // ragged thunderstorm
-  '230': 'purple', // thunderstorm with light drizzle
-  '231': 'purple', // thunderstorm with drizzle
-  '232': 'purple', // thunderstorm with heavy drizzle
-  '300': 'lightblue', // light intensity drizzle
-  '301': 'lightblue', // drizzle
-  '302': 'lightblue', // heavy intensity drizzle
-  '310': 'lightblue', // light intensity drizzle rain
-  '311': 'lightblue', // drizzle rain
-  '312': 'lightblue', // heavy intensity drizzle rain
-  '313': 'lightblue', // shower rain and drizzle
-  '314': 'lightblue', // heavy shower rain and drizzle
-  '321': 'lightblue', // shower drizzle
-  '500': 'blue', // light rain
-  '501': 'blue', // moderate rain
-  '502': 'blue', // heavy intensity rain
-  '503': 'blue', // very heavy rain
-  '504': 'blue', // extreme rain
-  '511': 'lightgray', // freezing rain
-  '520': 'lightblue', // light intensity shower rain
-  '521': 'lightblue', // shower rain
-  '522': 'lightblue', // heavy intensity shower rain
-  '531': 'lightblue', // ragged shower rain
-  '600': 'lightgray', // light snow
-  '601': 'lightgray', // snow
-  '602': 'lightgray', // heavy snow
-  '611': 'lightgray', // sleet
-  '612': 'lightgray', // light shower sleet
-  '613': 'lightgray', // shower sleet
-  '615': 'lightgray', // light rain and snow
-  '616': 'lightgray', // rain and snow
-  '620': 'lightgray', // light shower snow
-  '621': 'lightgray', // shower snow
-  '622': 'lightgray', // heavy shower snow
-  '701': 'lightgray', // mist
-  '711': 'lightgray', // smoke
-  '721': 'lightgray', // haze
-  '731': 'lightgray', // sand/dust whirls
-  '741': 'lightgray', // fog
-  '751': 'lightgray', // sand
-  '761': 'lightgray', // dust
-  '762': 'lightgray', // volcanic ash
-  '771': 'lightgray', // squalls
-  '781': 'lightgray', // tornado
-  '800': 'orange', // clear sky
-  '801': 'gray', // few clouds: 11-25%
-  '802': 'gray', // scattered clouds: 25-50%
-  '803': 'gray', // broken clouds: 51-84%
-  '804': 'gray', // overcast clouds: 85-100%
+  Clear: '#FFA500',
+  Clouds: '#808080',
+  Rain: '#0000FF',
+  Snow: '#D3D3D3',
+  Thunderstorm: '#800080',
+  Drizzle: '#ADD8E6',
+  Mist: '#D3D3D3',
 };
-/* const defaultWeather: WeatherData = {
-  coord: { lon: -35.79, lat: -6.6417 },
-  weather: [{ id: 801, main: 'Clouds', description: 'algumas nuvens', icon: '02n' }],
-  base: 'stations',
-  main: {
-    temp: 19.96,
-    feels_like: 20.15,
-    temp_min: 19.96,
-    temp_max: 19.96,
-    pressure: 1013,
-    humidity: 82,
-    sea_level: 1013,
-    grnd_level: 952,
-  },
-  visibility: 10000,
-  wind: { speed: 5.48, deg: 138, gust: 10.67 },
-  clouds: { all: 14 },
-  dt: 1700970605,
-  sys: { country: 'BR', sunrise: 1700985407, sunset: 1701030260 },
-  timezone: -10800,
-  id: 3404306,
-  name: 'Cacimba de Dentro',
-  cod: 200,
-}; */
 
-export const weatherError = (text: string = 'weather error') => Swal.fire({
-  title: 'Erro!',
-  text,
-  icon: 'error',
-  confirmButtonText: 'Ok',
+export const defaultErrors: { [key: string]: string } = {
+  "401": "Não autorizado. Por favor, verifique sua chave de API.",
+  "404": "Cidade não encontrada. Por favor, verifique o nome da cidade.",
+  "429": "Muitas solicitações. Por favor, tente novamente mais tarde.",
+  "500": "Erro interno do servidor. Por favor, tente novamente mais tarde.",
+  "502": "Erro de gateway ruim. Por favor, tente novamente mais tarde.",
+  "503": "Serviço indisponível. Por favor, tente novamente mais tarde.",
+  "504": "Tempo limite do gateway. Por favor, tente novamente mais tarde."
+}
+
+export const weatherError = (text: string = 'weather error') =>
+  Swal.fire({
+    title: 'Erro!',
+    text,
+    icon: 'error',
+    confirmButtonText: 'Ok',
+    background: '#333',
+    color: '#fff',
 });

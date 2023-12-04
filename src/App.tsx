@@ -1,6 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
-import { TodayPage, UpcomingDaysPage } from './pages';
-import { GlobalStyle, WeatherProvider } from './utils';
+import { WeatherProvider } from './utils';
+import { GlobalStyle } from './styles';
+import { Weather } from './pages/Weather';
+import { ForecastDetails, WeatherDetails } from './components/Details';
 
 function App() {
   return (
@@ -9,8 +11,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Navigate to="/weather" replace />} />
-          <Route path="/weather" element={<TodayPage />}></Route>
-          <Route path="/forecast" element={<UpcomingDaysPage />}></Route>
+          <Route path="/weather" element={<Weather details={ <WeatherDetails /> } />}></Route>
+          <Route path="/forecast" element={<Weather details={ <ForecastDetails /> } />}></Route>
         </Routes>
       </BrowserRouter>
     </WeatherProvider>

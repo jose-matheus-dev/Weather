@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, TooltipProps } from 'recharts';
-import { openWeather } from '../utils/server';
+import { LineChart, Line, XAxis, YAxis, Tooltip, CartesianGrid, TooltipProps, ResponsiveContainer } from 'recharts';
+import { openWeather } from '../../utils/server';
 import moment from 'moment';
-import { Footer } from './Footer';
-import { useSession } from '../hooks';
+import { useSession } from '../../hooks';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
-import { ForecastData, celsiusToFahrenheit, defaulForecast, weatherError } from '../utils';
-import Swal from 'sweetalert2';
+import { ForecastData, celsiusToFahrenheit, defaulForecast, weatherError } from '../../utils';
 
 type WeatherChartProps = {
   data: Array<ForecastData['list'][0] & { dtFormatted: string }>;
@@ -55,25 +53,27 @@ const TooltipContainer = styled.div`
 const WeatherChart = ({ data }: WeatherChartProps) => {
   const { info } = useSession();
   return (
-    <LineChart width={1070} height={400} data={data}>
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="dtFormatted" stroke={info.isDarkMode ? '#ececec' : undefined} />
-      <YAxis
-        tickFormatter={(tick) => (info.isFahrenheit ? `${celsiusToFahrenheit(tick)}ºF` : `${tick}ºC`)}
-        stroke={info.isDarkMode ? '#ececec' : undefined}
-      />
-      <Tooltip content={CustomTooltip} />
-      <Line type="monotone" dataKey="main.temp" stroke="#8884d8" />
-    </LineChart>
+    <ResponsiveContainer width="100%" height="100%">
+      <LineChart data={data}>
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="dtFormatted" stroke={info.isDarkMode ? '#ececec' : undefined} />
+        <YAxis
+          tickFormatter={(tick: string) => (info.isFahrenheit ? `${celsiusToFahrenheit(Number(tick))}ºF` : `${tick}ºC`)}
+          stroke={info.isDarkMode ? '#ececec' : undefined}
+        />
+        <Tooltip content={CustomTooltip} />
+        <Line type="monotone" dataKey="main.temp" stroke="#8884d8" />
+      </LineChart>
+    </ResponsiveContainer>
   );
 };
 
-export function Forecast() {
+export function ForecastDetails() {
   const { weather } = useSession();
   const [forecast, setForecast] = useState(defaulForecast);
 
   useEffect(() => {
-    if (Object.keys(weather).length !== 0 && weather.name !== 'Honolulu') {
+    if (Object.keys(weather).length !== 0) {
       openWeather
         .getThreeHourForecastByCityId(weather.id)
         .then((forecast) => {
@@ -89,16 +89,17 @@ export function Forecast() {
       <WeatherChart
         data={forecast.list.map((w) => ({ ...w, dtFormatted: moment.utc(w.dt, 'X').format('DD/MM (ddd)') }))}
       />
-      <Footer />
     </ForecastMain>
   );
 }
 
 const ForecastMain = styled.main`
-  margin-top: 64px;
+  margin-top: min(5.93vh, 64px);
   background-color: ${({ theme }) => (theme.isDarkMode ? '#000000 !important' : '#ffffff')};
-  padding: 25px 0px;
-  width: 1096.226px;
-  height: 450px;
+  padding: min(5vh, 25px) 0px;
+  width: 57.56vw;
+  height: 41.67vh;
   flex-shrink: 0;
+  max-width: 1096px;
+  max-height: 450px;
 `;
