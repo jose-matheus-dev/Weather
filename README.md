@@ -32,7 +32,7 @@ npm run dev
 
 </details>
 
-Aplicação Front que consume a OpenWeatherMap e para obter informações sobre o clima de qualquer cidade do mundo, há também a presença de um gráfico recharts.
+Aplicação frontend que consome a API OpenWeatherMap para obter informações sobre o clima de qualquer cidade do mundo, incluindo um gráfico usando Recharts.
 
 <hr>
 
